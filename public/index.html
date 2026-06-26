@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমার আন্তর্জাতিক ই-কমার্স শপ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+        }
+
+        /* ১. নেভিগেশন বার */
+        .navbar {
+            background-color: #1a252f;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar ul li {
+            margin-left: 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            color: #3498db;
+        }
+
+        /* ২. হেডিং বক্স */
+        .heading-container {
+            max-width: 1200px;
+            margin: 40px auto 20px auto;
+            padding: 0 20px;
+        }
+
+        .main-heading {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            border-radius: 12px;
+            font-size: 26px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* ৩. প্রোডাক্ট রেসপনসিভ গ্রিড */
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        /* আসল ইমেজের সাইজ সুন্দর করার সিএসএস */
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover; /* ইমেজ যেন চ্যাপ্টা না হয়ে সুন্দর ফিট হয় */
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background-color: #eaeaea;
+        }
+
+        .product-name {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+
+        .buy-btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .buy-btn:hover {
+            background-color: #219653;
+        }
+
+        /* ৪. পেমেন্ট মোডাল (Popup Box) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            animation: fadeIn 0.4s;
+        }
+
+        @keyframes fadeIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close-btn:hover { color: #333; }
+
+        .payment-info {
+            background: #fff0f6;
+            border: 1px dashed #d12053;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: bold;
+            color: #d12053;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .confirm-btn {
+            background-color: #d12053;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .confirm-btn:hover { background-color: #b01843; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">🛍️ আমার শপ</div>
+        <ul>
+            <li><a href="#">হোম</a></li>
+            <li><a href="#">প্রোডাক্টস</a></li>
+            <li><a href="#">যোগাযোগ</a></li>
+        </ul>
+    </nav>
+
+    <div class="heading-container">
+        <h1 class="main-heading">🛍️ আমাদের প্রিমিয়াম প্রোডাক্ট কালেকশন</h1>
+    </div>
+
+    <div style="margin: 30px auto; max-width: 600px; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+        <h3 style="color: #2c3e50;">🔍 আপনার অর্ডার ট্র্যাক করুন</h3>
+        <p style="font-size: 14px; color: #666;">অর্ডারের বর্তমান অবস্থা জানতে আপনার ফোন নম্বরটি দিন</p>
+        <input type="text" id="trackPhone" placeholder="বিকাশ/নগদ নম্বরটি লিখুন" style="padding: 10px; width: 60%; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+        <button onclick="trackOrder()" style="padding: 10px 20px; background: #2c3e50; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">চেক করুন</button>
+        
+        <div id="trackResult" style="margin-top: 20px; text-align: left; padding: 10px; border-radius: 5px;"></div>
+    </div>
+
+    <div class="product-container" id="products"></div>
+
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 style="color: #2c3e50; margin-bottom: 10px;">অর্ডার কনফার্ম করুন</h2>
+            <p id="modalProductDetails" style="font-size: 15px; color: #555;"></p>
+            
+            <div class="payment-info">
+                📱 বিকাশ / নগদ (Personal): 01819134854<br>
+                <span style="font-size: 13px; font-weight: normal; color: #666;">উপরের নাম্বারে "Send Money" করে নিচের তথ্যগুলো পূরণ করুন।</span>
+            </div>
+
+            <input type="text" id="custPhone" class="input-field" placeholder="আপনার বিকাশ/নগদ নাম্বার দিন" required>
+            <input type="text" id="custTxID" class="input-field" placeholder="Transaction ID (TxID) দিন" required>
+            
+            <button class="confirm-btn" onclick="submitPayment()">পেমেন্ট নিশ্চিত করুন</button>
+        </div>
+    </div>
+
+    <script>
+        let currentProduct = {};
+
+        // ব্যাকএন্ড থেকে ইমেজসহ প্রোডাক্ট ডাটা নিয়ে আসা
+        fetch('/api/products')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('products');
+                data.forEach(product => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+                    
+                    // 🛑 এখানে আসল ইমেজ ট্যাগ <img src="..."> ব্যবহার করা হয়েছে 🛑
+                    card.innerHTML = `
+                        <img src="${product.image}" class="product-image" alt="${product.name}">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-price">৳ ${product.price}</p>
+                        <button class="buy-btn" onclick="openModal('${product.name}', ${product.price})">Add to Cart</button>
+                    `;
+                    container.appendChild(card);
+                });
+            });
+
+        function openModal(name, price) {
+            currentProduct = { name, price };
+            document.getElementById('modalProductDetails').innerHTML = `প্রোডাক্ট: <b>${name}</b><br>টোটাল বিল: <b style="color:red;">৳${price}</b>`;
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        function submitPayment() {
+            const phone = document.getElementById('custPhone').value;
+            const txid = document.getElementById('custTxID').value;
+
+            if(phone === "" || txid === "") {
+                alert("দয়া করে আপনার ফোন নাম্বার এবং Transaction ID সঠিকভাবে দিন।");
+                return;
+            }
+
+            fetch('/api/orders', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    productName: currentProduct.name,
+                    price: currentProduct.price,
+                    customerPhone: phone,
+                    transactionId: txid
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) {
+                    alert("ধন্যবাদ! আপনার অর্ডারটি সার্ভারে সফলভাবে জমা হয়েছে।");
+                    closeModal();
+                    document.getElementById('custPhone').value = "";
+                    document.getElementById('custTxID').value = "";
+                }
+            });
+        }
+
+        function trackOrder() {
+            const phone = document.getElementById('trackPhone').value;
+            if(phone === "") {
+                alert("দয়া করে আপনার ফোন নম্বরটি দিন।");
+                return;
+            }
+
+            fetch('/api/admin/orders')
+                .then(res => res.json())
+                .then(orders => {
+                    const customerOrders = orders.filter(o => o.customerPhone === phone);
+                    const resultDiv = document.getElementById('trackResult');
+                    resultDiv.innerHTML = "";
+
+                    if(customerOrders.length === 0) {
+                        resultDiv.innerHTML = `<p style="color:red; text-align:center;">⚠️ এই নম্বরে কোনো অর্ডার পাওয়া যায়নি।</p>`;
+                        return;
+                    }
+
+                    customerOrders.forEach(order => {
+                        let statusText = order.status === 'Pending' ? '⏰ পেন্ডিং (পেমেন্ট যাচাই করা হচ্ছে)' : '✅ কনফার্ম হয়েছে (ডেলিভারির জন্য প্রস্তুত)';
+                        let statusColor = order.status === 'Pending' ? '#e67e22' : '#27ae60';
+                        
+                        resultDiv.innerHTML += `
+                            <div style="background: #f9f9f9; padding: 15px; border-left: 5px solid ${statusColor}; margin-bottom: 10px; border-radius: 4px;">
+                                <p style="margin: 5px 0;"><b>প্রোডাক্ট:</b> ${order.productName}</p>
+                                <p style="margin: 5px 0;"><b>মূল্য:</b> ৳${order.price}</p>
+                                <p style="margin: 5px 0;"><b>অবস্থা (Status):</b> <span style="color: ${statusColor}; font-weight: bold;">${statusText}</span></p>
+                            </div>
+                        `;
+                    });
+                });
+        }
+    </script>
+</body>
+</html>
