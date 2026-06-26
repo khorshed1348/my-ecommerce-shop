@@ -77,7 +77,8 @@ const products = [
     { id: 8, name: "Travel Backpack", price: 2800, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&q=80" },
     { id: 9, name: "Mechanical Keyboard", price: 3800, image: "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=500&q=80" },
     { id: 10, name: "RGB Gaming Mouse", price: 1400, image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500&q=80" },
-    { id: 11, name: "Rechargeable lithium", price: 3035, image: "/Rechargeable lithium.png"}
+    { id: 11, name: "Stylish Shoes", price: 3500, image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80" },
+    { id: 12, name: "Rechargeable lithium", price: 3035, image: "/Rechargeable lithium.png"}
 ];
 
 let orders = [];
